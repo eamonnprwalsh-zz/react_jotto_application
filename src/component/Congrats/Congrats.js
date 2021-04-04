@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types'; // ES6
+
 function Congrats({ ...props }) {
-  console.log(props);
 
   let successMessage;
 
@@ -14,6 +15,10 @@ function Congrats({ ...props }) {
       {successMessage}
     </div>
   );
+}
+
+Congrats.propTypes = {
+  success: PropTypes.bool.isRequired
 }
 
 export default Congrats;
