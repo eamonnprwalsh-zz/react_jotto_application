@@ -5,6 +5,7 @@ export const findByTestAttr = (wrapper, val) => {
 };
 
 export const checkProps = (component, conformingPropTypes) => {
+  console.log(conformingPropTypes);
   const propError = checkPropTypes(
     component.propTypes,
     conformingPropTypes,
