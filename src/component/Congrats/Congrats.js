@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'; // ES6
 
-function Congrats({ ...props }) {
-
+function Congrats(props) {
+  
   let successMessage;
 
   if (props.success) {
