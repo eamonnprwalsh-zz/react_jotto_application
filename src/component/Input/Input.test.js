@@ -34,19 +34,33 @@ describe("holder", () => {
 });
 
 describe("state controller input field", () => {
-  test("setCurrentGuess called when the input field changes", () => {
+  let wrapper;
+  let mockSetCurrentGuess = jest.fn();
+  let originalUseState;
 
+  beforeEach(() => {
     // This is a replacement function for useState
     // Below is mocking [currentGuess, setCurrentGuess] with '' and mockSetCurrentGuess
-    const mockSetCurrentGuess = jest.fn();
+    mockSetCurrentGuess.mockClear();
+    originalUseState = React.useState;
     React.useState = jest.fn(() => ["", mockSetCurrentGuess]);
+    wrapper = setup();
+  });
 
-    const wrapper = setup();
+  afterEach(() => {
+    React.useState = originalUseState;
+  });
 
+  test("setCurrentGuess called when the input field changes", () => {
     const inputField = findByTestAttr(wrapper, "input-box");
     const mockEvent = { target: { value: "train" } };
     inputField.simulate("change", mockEvent);
-
     expect(mockSetCurrentGuess).toHaveBeenCalledWith("train");
+  });
+
+  test("setCurrentGuess called when the submit p", () => {
+    const btn = findByTestAttr(wrapper, "submit-button");
+    btn.simulate("click", { preventDefault() {} });
+    expect(mockSetCurrentGuess).toHaveBeenCalledWith("");
   });
 });
