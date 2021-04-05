@@ -5,7 +5,7 @@ function Congrats(props) {
   let successMessage;
 
   if (props.success) {
-    successMessage = <div data-test="congrats-message">Congrats!!</div>;
+    successMessage = <div data-test="congrats-message" className="alert alert-success">Congrats you guessed the Secret Word!!</div>;
   } else {
     successMessage = <div data-test="congrats-message"></div>;
   }
