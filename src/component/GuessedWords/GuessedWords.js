@@ -2,7 +2,7 @@ import PropTypes from "prop-types"; // ES6
 import { useState } from "react";
 
 function GuessedWords(props) {
-  console.log(props);
+
   const [guessedWords, setGuessedWords] = useState([]);
 
   let contents;

@@ -4,27 +4,65 @@ import { findByTestAttr, checkProps } from "../../../test/testUtils";
 import React from "react";
 
 const defaultProps = {
-  secretWord: "house",
+  success: true,
+  secretWord: "party",
 };
 
-const setup = (props = {}) => {
-  const setUpProps = { ...defaultProps, ...props };
-  return shallow(<Input {...setUpProps} />);
+const setup = (success = false, secretWord = "party") => {
+  return shallow(<Input success={success} secretWord={secretWord} />);
 };
 
 test("does not throw a warning against default props", () => {
   checkProps(Input, defaultProps);
 });
 
-describe("holder", () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = setup({ secretWord: "cake" });
+describe("render", () => {
+
+  describe("success true", () => {
+    let wrapper;
+    beforeEach(() => {
+      wrapper = setup(true);
+    });
+    test("Input renders without error", () => {
+      const inputComponent = findByTestAttr(wrapper, "input-component");
+      expect(inputComponent.exists()).toBe(true);
+    });
+    test("there is no input box", () => {
+      const inputBox = findByTestAttr(wrapper, "input-box");
+      expect(inputBox.exists()).toBe(false);
+    })
+    test("there is no submit button", () => {
+      const submitButton = findByTestAttr(wrapper, "submit-button");
+      expect(submitButton.exists()).toBe(false);
+    })
   });
 
-  test("for existence of input component", () => {
-    const inputField = findByTestAttr(wrapper, "input-component");
-    expect(inputField.length).toBe(1);
+  describe("success false", () => {
+    let wrapper;
+    beforeEach(() => {
+      wrapper = setup(false);
+    });
+    test("Input renders without error", () => {
+      const inputComponent = findByTestAttr(wrapper, "input-component");
+      expect(inputComponent.exists()).toBe(true);
+    });
+    test("there is an input box", () => {
+      const inputBox = findByTestAttr(wrapper, "input-box");
+      expect(inputBox.exists()).toBe(true);
+    })
+    test("there is a submit button", () => {
+      const submitButton = findByTestAttr(wrapper, "submit-button");
+      expect(submitButton.exists()).toBe(true);
+    })
+
+  });
+});
+
+describe("holder", () => {
+
+  let wrapper;
+  beforeEach(() => {
+    wrapper = setup(false);
   });
 
   test("for existence of empty input field", () => {

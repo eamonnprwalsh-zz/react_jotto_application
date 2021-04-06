@@ -1,12 +1,15 @@
 import PropTypes from "prop-types"; // ES6
 import React from "react";
 
-function Input({ secretWord }) {
+function Input({ success, secretWord }) {
   const [currentGuess, setCurrentGuess] = React.useState();
 
-  /*const onClickSubmitButton = () => {
-    setCurrentGuess("");
-  };*/
+  console.log(success);
+  console.log('secret word ' + secretWord);
+
+  if(success) {
+    return <div data-test="input-component" className="input-component"></div>
+  }
 
   return (
     <div data-test="input-component" className="input-component">
@@ -18,24 +21,25 @@ function Input({ secretWord }) {
           value={currentGuess}
           placeholder="Please enter a guess"
         ></input>
+        <button
+          data-test="submit-button"
+          className="btn btn-primary mb-2"
+          onClick={(evt) => {
+            evt.preventDefault();
+            // Update guessed words
+            // Check against secret words and update if success
+            setCurrentGuess("");
+          }}
+        >
+          Submit
+        </button>
       </form>
-      <button
-        data-test="submit-button"
-        className="btn btn-primary mb-2"
-        onClick={(evt) => {
-          evt.preventDefault();
-          // Update guessed words
-          // Check against secret words and update if success
-          setCurrentGuess('')
-        }}
-      >
-        Submit
-      </button>
     </div>
   );
 }
 
 Input.propTypes = {
+  success: PropTypes.bool.isRequired,
   secretWord: PropTypes.string.isRequired,
 };
 
