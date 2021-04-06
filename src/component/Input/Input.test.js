@@ -3,6 +3,16 @@ import Input from "./Input";
 import { findByTestAttr, checkProps } from "../../../test/testUtils";
 import React from "react";
 
+/*
+let mockSetCurrentGuess = jest.fn();
+
+jest.mock('react', ()=> ({
+  ...jest.requireActual('react'),
+  useState: (initialState) => [initialState, mockSetCurrentGuess]
+}));
+*/
+
+
 const defaultProps = {
   success: true,
   secretWord: "party",

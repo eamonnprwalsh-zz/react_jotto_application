@@ -2,14 +2,17 @@ import PropTypes from "prop-types"; // ES6
 import React from "react";
 
 function Input({ success, secretWord }) {
-  const [currentGuess, setCurrentGuess] = React.useState();
 
-  console.log(success);
-  console.log('secret word ' + secretWord);
+  const [currentGuess, setCurrentGuess] = React.useState('');
 
   if(success) {
     return <div data-test="input-component" className="input-component"></div>
   }
+
+  const onChangeInput = (event) => {
+    setCurrentGuess(event.target.value)
+  }
+  
 
   return (
     <div data-test="input-component" className="input-component">
@@ -17,7 +20,7 @@ function Input({ success, secretWord }) {
         <input
           data-test="input-box"
           className="mb-2 mc-sm-3"
-          onChange={(event) => setCurrentGuess(event.target.value)}
+          onChange={onChangeInput}
           value={currentGuess}
           placeholder="Please enter a guess"
         ></input>
