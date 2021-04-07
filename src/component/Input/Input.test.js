@@ -2,10 +2,11 @@ import { shallow } from "enzyme";
 import Input from "./Input";
 import { findByTestAttr, checkProps } from "../../../test/testUtils";
 import React from "react";
+import {testCall} from '../../../test/testUtils'
+
+//let mockSetCurrentGuess = jest.fn();
 
 /*
-let mockSetCurrentGuess = jest.fn();
-
 jest.mock('react', ()=> ({
   ...jest.requireActual('react'),
   useState: (initialState) => [initialState, mockSetCurrentGuess]
@@ -68,20 +69,20 @@ describe("render", () => {
   });
 });
 
-describe("holder", () => {
+describe("empty input box", () => {
 
   let wrapper;
   beforeEach(() => {
     wrapper = setup(false);
   });
 
-  test("for existence of empty input field", () => {
+  test("for existence of empty input box", () => {
     const inputField = findByTestAttr(wrapper, "input-box");
     expect(inputField.text().length).toBe(0);
   });
 });
 
-describe("state controller input field", () => {
+describe("state controller input box", () => {
   let wrapper;
   let mockSetCurrentGuess = jest.fn();
   let originalUseState;
@@ -95,9 +96,11 @@ describe("state controller input field", () => {
     wrapper = setup();
   });
 
+  
   afterEach(() => {
     React.useState = originalUseState;
   });
+  
 
   test("setCurrentGuess called when the input field changes", () => {
     const inputField = findByTestAttr(wrapper, "input-box");
@@ -106,7 +109,7 @@ describe("state controller input field", () => {
     expect(mockSetCurrentGuess).toHaveBeenCalledWith("train");
   });
 
-  test("setCurrentGuess called when the submit p", () => {
+  test("setCurrentGuess called when the submit button pressed", () => {
     const btn = findByTestAttr(wrapper, "submit-button");
     btn.simulate("click", { preventDefault() {} });
     expect(mockSetCurrentGuess).toHaveBeenCalledWith("");

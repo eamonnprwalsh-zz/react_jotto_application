@@ -13,6 +13,13 @@ function Input({ success, secretWord }) {
     setCurrentGuess(event.target.value)
   }
   
+  const onClickSubmitButton = (event) => {
+    event.preventDefault();
+    // Update guessed words
+    // Check against secret words and update if success
+    setCurrentGuess("");
+  }
+  
 
   return (
     <div data-test="input-component" className="input-component">
@@ -27,12 +34,7 @@ function Input({ success, secretWord }) {
         <button
           data-test="submit-button"
           className="btn btn-primary mb-2"
-          onClick={(evt) => {
-            evt.preventDefault();
-            // Update guessed words
-            // Check against secret words and update if success
-            setCurrentGuess("");
-          }}
+          onClick={onClickSubmitButton}
         >
           Submit
         </button>
