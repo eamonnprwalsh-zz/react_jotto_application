@@ -3,7 +3,6 @@ import { exportedForTesting } from './helper';
 import i18nInit from './i18n';
 
 jest.mock('./index', () => ({ getLetterMatchCount: jest.fn() }));
-//jest.mock('./i18n', () => jest.fn().mockResolvedValue());
 
 jest.mock('./i18n', () => ({
   __esModule: true,
